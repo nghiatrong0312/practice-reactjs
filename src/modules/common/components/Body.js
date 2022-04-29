@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from "react";
+import React, {useState} from "react";
 import Product from "../../feature/Product/Product";
 import Menu from "./Menu/Menu";
 
@@ -56,16 +56,23 @@ var DataFood = [
 
 function Body() {
 
-    const [selectMenu, setSelectMenu] = useState('')
+    const [selectMenu, setSelectMenu] = useState('');
 
+    const dataProducts = [];
+
+    for (let i = 0; i < selectMenu.length; i++){
+        dataProducts.push(<Product key={i} value={selectMenu[i]} />)
+    }
+
+    let result = [];
     const callBackFunction = (childData) => {
-        const result = [];
         DataFood.map((data, index) => {
             if (data.menuId === childData) {
                 result.push(data)
+                setSelectMenu(result)
             }
         })
-        setSelectMenu(result)
+
     }
 
     let element = DataMenu.map((dataMenu, index) => {
@@ -77,8 +84,6 @@ function Body() {
                 />
     })
 
-    console.log(selectMenu)
-
     return (
         <div>
             <div className="container-fluid">
@@ -86,8 +91,7 @@ function Body() {
                     {element}
                 </div>
             </div>
-            <Product
-            />
+            {dataProducts}
         </div>
     );
 }
