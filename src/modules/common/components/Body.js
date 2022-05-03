@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import Product from "../../feature/Product/Product";
 import Menu from "./Menu/Menu";
+import DataContext from "../../common/Context/DataContext";
 
 var DataMenu = [
     {
@@ -21,40 +22,12 @@ var DataMenu = [
     },
 ]
 
-var DataFood = [
-    {
-        'id' : 1,
-        "nameFood" : "Food 1",
-        "menuId" : 1
-    },
-    {
-        'id' : 2,
-        "nameFood" : "Food 2",
-        "menuId" : 1
-    },
-    {
-        'id' : 3,
-        "nameFood" : "Food 3",
-        "menuId" : 3
-    },
-    {
-        'id' : 4,
-        "nameFood" : "Food 4",
-        "menuId" : 3
-    },
-    {
-        'id' : 5,
-        "nameFood" : "Food 5",
-        "menuId" : 3
-    },
-    {
-        'id' : 6,
-        "nameFood" : "Food 6",
-        "menuId" : 2
-    },
-]
 
 function Body() {
+
+    let dataContext = useContext(DataContext)
+
+    let DataFood = dataContext.dataProduct
 
     const [selectMenu, setSelectMenu] = useState('');
 
@@ -69,13 +42,13 @@ function Body() {
         DataFood.map((data, index) => {
             if (data.menuId === childData) {
                 result.push(data)
-                setSelectMenu(result)
+                setSelectMenu(result);
             }
         })
-
     }
 
     let element = DataMenu.map((dataMenu, index) => {
+
         return  <Menu
                     key={index}
                     id={dataMenu.id}

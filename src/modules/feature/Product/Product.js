@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useRef} from "react";
 import "./Product.css";
 import DataContext from "../../common/Context/DataContext";
 
@@ -7,15 +7,54 @@ function Product(props) {
     let count = useContext(DataContext)
 
     const upQuantity = () => {
-        let total = 1 + count.quantity
+        let total = 1 + count.quantity;
+        let value = 1;
         count.setQuantity(total);
+        value += props.value.quantity++
+        props.value.quantity = value;
+        addFoodOrder(props.value);
+        count.dataProduct.map((data, index) => {
+            if (data.id === props.value.id) {
+                data.status = true;
+            }
+        })
     }
 
     const downQuantity = () => {
-        if (count.quantity > 0){
-            let total = count.quantity -1
+        if (props.value.quantity > 0){
+            let total = count.quantity -1;
             count.setQuantity(total);
+            props.value.quantity = props.value.quantity -1 ;
+
         }
+        if (props.value.quantity === 0){
+            count.dataProduct.map((data, index) => {
+                if (data.id === props.value.id) {
+                    data.status = false;
+                }
+            })
+        }
+    }
+
+    const addFoodOrder = (value) => {
+        if (count.productOrder.length === 0){
+            count.productOrder.push(value)
+        }else {
+            let checkIsset = [];
+            count.productOrder.map((data, index) => {
+                if (data.id === value.id) {
+                    checkIsset.push(value)
+                }
+            })
+            if (checkIsset.length === 0) {
+                count.productOrder.push(value)
+            }
+        }
+
+    }
+
+    const changeInputQuantity = () => {
+
     }
 
     return (
@@ -29,7 +68,7 @@ function Product(props) {
                 </div>
                 <div className="col-3">
                     <button onClick={ upQuantity }>UP</button>
-                    <input type="number" />
+                    <input type="number" value={props.value.quantity} onChange={ changeInputQuantity } />
                     <button onClick={ downQuantity }>Down</button>
                 </div>
             </div>

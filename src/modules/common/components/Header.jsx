@@ -1,11 +1,18 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import * as Icon from 'react-bootstrap-icons';
 import './Header.css'
 import DataContext from "../Context/DataContext";
+import InfoModal from "./Modal/InfoModal";
 
-function Header(context) {
+function Header() {
 
-    let count = useContext(DataContext)
+    let dataContext = useContext(DataContext);
+
+    let valueStatus = dataContext.show;
+
+    const showModal = () => {
+        dataContext.setShow(true);
+    }
 
     return (
         <div>
@@ -14,12 +21,13 @@ function Header(context) {
                     <div className="col-6">
                         <a className="navbar-brand" href="#">WebSiteName</a>
                     </div>
-                    <div className="col-6 bag-icon">
+                    <div className="col-6 bag-icon" onClick={showModal}>
                         <Icon.Bag />
-                        <span className="quantity-food" >{count.quantity}</span>
+                        <span className="quantity-food" >{dataContext.quantity}</span>
                     </div>
                 </div>
             </div>
+            <InfoModal value={{valueStatus}} />
         </div>
     );
 }

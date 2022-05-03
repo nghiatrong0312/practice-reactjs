@@ -5,9 +5,60 @@ const Quantity = createContext();
 export function DataStory({children}) {
 
     const [quantity, setQuantity] = useState(0);
+    const [show, setShow] = useState(false);
+    const [productOrder, setProductOrder] = useState([]);
+    const [dataProduct, setDataProduct] = useState([
+        {
+            'id' : 1,
+            "nameFood" : "Food 1",
+            "menuId" : 1,
+            "quantity" : 0,
+            "status" : false
+        },
+        {
+            'id' : 2,
+            "nameFood" : "Food 2",
+            "menuId" : 1,
+            "quantity" : 0,
+            "status" : false
+        },
+        {
+            'id' : 3,
+            "nameFood" : "Food 3",
+            "menuId" : 3,
+            "quantity" : 0,
+            "status" : false
+        },
+        {
+            'id' : 4,
+            "nameFood" : "Food 4",
+            "menuId" : 3,
+            "quantity" : 0,
+            "status" : false
+        },
+        {
+            'id' : 5,
+            "nameFood" : "Food 5",
+            "menuId" : 3,
+            "quantity" : 0,
+            "status" : false
+        },
+        {
+            'id' : 6,
+            "nameFood" : "Food 6",
+            "menuId" : 2,
+            "quantity" : 0,
+            "status" : false
+        },
+    ]);
 
     return (
-       <Quantity.Provider value={{quantity, setQuantity}}>
+       <Quantity.Provider value={{
+           quantity, setQuantity,
+           show, setShow,
+           productOrder, setProductOrder,
+           dataProduct, setDataProduct,
+       }}>
            {children}
        </Quantity.Provider>
     );
