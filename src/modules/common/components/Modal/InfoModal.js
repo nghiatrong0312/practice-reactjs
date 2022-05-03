@@ -13,11 +13,13 @@ export default function InfoModal(props) {
     };
 
     const element = dataContext.productOrder.map((data, index) => {
-        return <tr key={index}>
-                    <th>{ data.nameFood }</th>
-                    <th>{ data.quantity }</th>
-                    <th><Icon.Trash3Fill /></th>
-                </tr>
+        if (data.quantity !== 0) {
+            return <tr key={index}>
+                <th>{ data.nameFood }</th>
+                <th>{ data.quantity }</th>
+                <th><Icon.Trash3Fill /></th>
+            </tr>
+        }
     })
 
     return (
