@@ -24,7 +24,6 @@ export default function InfoModal(props) {
         newContext.dataProduct.map((data, index) => {
             if (data.id === param2) {
                 if (newContext.quantity !== 0) {
-                    console.log(2)
                     newContext.setQuantity(newContext.quantity - data.quantity);
                 }
                 data.quantity = 0;
@@ -53,7 +52,6 @@ export default function InfoModal(props) {
             data.quantity = 0;
             data.status = false;
         })
-        console.log(testOrder)
     }
 
     return (
