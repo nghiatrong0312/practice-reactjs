@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import Product from "../../feature/Product/Product";
-import Menu from "./Menu/Menu";
+import Menu from "../../common/components/Menu/Menu";
 import DataContext from "../../common/Context/DataContext";
 
 var DataMenu = [
@@ -23,7 +23,7 @@ var DataMenu = [
 ]
 
 
-function Body() {
+function Home() {
 
     let dataContext = useContext(DataContext)
 
@@ -51,11 +51,11 @@ function Body() {
     let element = DataMenu.map((dataMenu, index) => {
 
         return  <Menu
-                    key={index}
-                    id={dataMenu.id}
-                    titleMenu={dataMenu.titleMenu}
-                    parentCallback={callBackFunction}
-                />
+            key={index}
+            id={dataMenu.id}
+            titleMenu={dataMenu.titleMenu}
+            parentCallback={callBackFunction}
+        />
     })
 
     return (
@@ -70,4 +70,4 @@ function Body() {
     );
 }
 
-export default Body;
+export default Home;
