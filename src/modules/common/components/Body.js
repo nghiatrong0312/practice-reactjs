@@ -45,7 +45,6 @@ function Body() {
                 setSelectMenu(result);
             }
         })
-
     }
 
     let element = DataMenu.map((dataMenu, index) => {

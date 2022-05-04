@@ -12,6 +12,8 @@ function Menu(props) {
 
     let idMenuSelect = '';
 
+    let dataContext = useContext(DataContext)
+
     const selectMenu = () => {
         idMenuSelect = props.id;
         props.parentCallback(props.id);
